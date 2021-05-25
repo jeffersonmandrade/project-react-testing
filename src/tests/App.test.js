@@ -13,4 +13,13 @@ describe('Test component <App /> routes', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/');
   });
+  test('link about', () => {
+    const { history } = renderWithRouter(<App />);
+    const linkAbout = screen.getByRole('link', {
+      name: /About/i,
+    });
+    fireEvent.click(linkAbout);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/about');
+  });
 });
