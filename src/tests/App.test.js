@@ -1,14 +1,16 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import App from '../App';
+import renderWithRouter from '../renderWithRouter';
 
-test('shows the Pokédex when the route is `/`', () => {
-  const { getByText } = render(
-    <MemoryRouter initialEntries={ ['/'] }>
-      <App />
-    </MemoryRouter>,
-  );
-
-  expect(getByText('Encountered pokémons')).toBeInTheDocument();
+describe('Test component <App /> routes', () => {
+  test('link homeut', () => {
+    const { history } = renderWithRouter(<App />);
+    const linkHome = screen.getByRole('link', {
+      name: /Home/i,
+    });
+    fireEvent.click(linkHome);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/');
+  });
 });
