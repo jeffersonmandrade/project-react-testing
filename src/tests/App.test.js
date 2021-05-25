@@ -22,4 +22,13 @@ describe('Test component <App /> routes', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/about');
   });
+  test('link Favorito', () => {
+    const { history } = renderWithRouter(<App />);
+    const linkFavorites = screen.getByRole('link', {
+      name: /Favorite Pokémons/i,
+    });
+    fireEvent.click(linkFavorites);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/favorites');
+  });
 });
