@@ -24,3 +24,26 @@ describe('Se é renderizado um card com informações  de determinado pókemon',
       'https://cdn2.bulbagarden.net/upload/4/40/Spr_5b_143.png');
   });
 });
+
+describe('Testes de Navegação em More Details', () => {
+  test('clicar no link de more-details é redirecionado', () => {
+    renderWithRouter(<App />);
+    const buttonNormal = screen.getByRole('button', {
+      name: /Normal/i,
+    });
+    fireEvent.click(buttonNormal);
+
+    const linkMoreDetails = screen.getByRole('link', {
+      name: /More details/,
+    });
+    expect(linkMoreDetails).toBeInTheDocument();
+    fireEvent.click(linkMoreDetails);
+    const favoritePokemon = screen.getByRole('checkbox');
+    fireEvent.click(favoritePokemon);
+    const starImage = screen.getByRole('img', {
+      name: /snorlax is marked as favorite/i,
+    });
+    expect(starImage).toHaveAttribute('src',
+      '/star-icon.svg');
+  });
+});
