@@ -26,7 +26,7 @@ describe('Se é renderizado um card com informações  de determinado pókemon',
 });
 
 describe('Testes de Navegação em More Details', () => {
-  test('clicar no link de more-details é redirecionado', () => {
+  test('clicar nos favoritos aparece a estrela', () => {
     renderWithRouter(<App />);
     const buttonNormal = screen.getByRole('button', {
       name: /Normal/i,
