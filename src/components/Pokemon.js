@@ -31,7 +31,6 @@ const Pokemon = ({ pokemon, showDetailsLink, isFavorite }) => {
     </div>
   );
 };
-
 Pokemon.propTypes = {
   isFavorite: PropTypes.bool.isRequired,
   pokemon: pokemonType.isRequired,
